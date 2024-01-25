@@ -28,4 +28,4 @@ jobs:
         ls -al
     - name: Push Subtree
       run: |
-        git subtree push --prefix=ir https://github.com/dongmin-ra/subtree_test_slave.git main
+        git subtree push --prefix=lib https://github.com/dongmin-ra/subtree_test_slave.git main
