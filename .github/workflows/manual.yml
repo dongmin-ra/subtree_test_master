@@ -18,10 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # Runs a single command using the runners shell
+    - name: Checkout Repository
+      uses: actions/checkout@v2 
     - name: Echo and change directory
       run: |
         echo "This PR will be merged"
+        ls -al
         cd ${GITHUB_WORKSPACE}
+        ls -al
     - name: Push Subtree
       run: |
         git subtree push --prefix=ir https://github.com/dongmin-ra/subtree_test_slave.git main
