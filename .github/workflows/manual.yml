@@ -5,16 +5,22 @@ name: Subtree Push
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
-  push:
+  pull_requests:
+    types:
+      - closed
     branches:
-      - master
+      - main
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   subtree-push:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     # Runs a single command using the runners shell
+    - name: Echo
+      run: |
+        echo "This PR will be merged"
     - name: Push Subtree
       run: |
         git subtree push --prefix=${GITHUB_WORKSPACE}/ir https://github.com/dongmin-ra/subtree_test_slave.git main
