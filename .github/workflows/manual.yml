@@ -24,4 +24,4 @@ jobs:
         cd ${GITHUB_WORKSPACE}
     - name: Push Subtree
       run: |
-        git subtree push --prefix=${GITHUB_WORKSPACE}/ir https://github.com/dongmin-ra/subtree_test_slave.git main
+        git subtree push --prefix=ir https://github.com/dongmin-ra/subtree_test_slave.git main
