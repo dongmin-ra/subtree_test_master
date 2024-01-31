@@ -21,7 +21,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2 
     - name: Subtree Push
-      uses: actions/nxtlvlsoftware/git-subtree-action@1.1
+      uses: nxtlvlsoftware/git-subtree-action@1.1
       with:
         repo: 'dongmin-ra/subtree-slave'
         path: 'lib'
