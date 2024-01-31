@@ -27,3 +27,4 @@ jobs:
         path: 'lib'
         deploy_key: ${{ secrets.ACTION_TOKEN }}
         tag: false
+        branch: main
