@@ -20,20 +20,10 @@ jobs:
     # Runs a single command using the runners shell
     - name: Checkout Repository
       uses: actions/checkout@v2 
-    - name: Echo and change directory
-      run: |
-        echo "This PR will be merged"
-        ls -al
-        cd ${GITHUB_WORKSPACE}
-        ls -al
-    - name: git config
-      run: |
-        cp .git/config .git/config-original
-        git config --global url."https://api:${{ secrets.ACTION_TOKEN }}@github.com/".insteadOf "https://github.com/"
-        git config --unset http."https://github.com/".extraheader
-    - name: Push Subtree
-      run: |
-        git subtree push --prefix=lib https://github.com/dongmin-ra/subtree_test_slave.git main
-    - name: git config back
-      run: |
-        cp -f .git/config-original .git/config
+    - name: Subtree Push
+      uses: actions/nxtlvlsoftware/git-subtree-action@1.1
+      with:
+        repo: 'dongmin-ra/subtree-slave'
+        path: 'lib'
+        deploy_key: ${{ secrets.ACTION_TOKEN }}
+        tag: false
