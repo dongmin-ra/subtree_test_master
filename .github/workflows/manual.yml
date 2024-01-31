@@ -21,10 +21,9 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2 
     - name: Subtree Push
-      uses: elanworld/subtree-sync-action@v1.0
+      uses: dongmin-ra/git-subtree@main
       with:
+        pat: ${{ secrets.ACTION_TOKEN }}
         repo: https://github.com/dongmin-ra/subtree_test_slave.git
-        repo_token: ${{ secrets.ACTION_TOKEN }}
-        path: lib
-        force: false
-        branch: main
+        action: push
+        prefix: lib
