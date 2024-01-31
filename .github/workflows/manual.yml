@@ -28,3 +28,4 @@ jobs:
         deploy_key: ${{ secrets.ACTION_TOKEN }}
         tag: false
         branch: main
+        force: true
