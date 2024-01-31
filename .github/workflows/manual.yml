@@ -23,7 +23,7 @@ jobs:
     - name: Subtree Push
       uses: nxtlvlsoftware/git-subtree-action@1.1
       with:
-        repo: 'dongmin-ra/subtree_test_slave'
+        repo: 'https://github.com/dongmin-ra/subtree_test_slave.git'
         path: 'lib'
         deploy_key: ${{ secrets.ACTION_TOKEN }}
         tag: false
