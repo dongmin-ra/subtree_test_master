@@ -33,6 +33,7 @@ jobs:
         git config --unset http."https://github.com/".extraheader
     - name: Push Subtree
       run: |
+        git subtree pull --prefix=lib https://github.com/dongmin-ra/subtree_test_slave.git main
         git subtree push --prefix=lib https://github.com/dongmin-ra/subtree_test_slave.git main
     - name: git config back
       run: |
