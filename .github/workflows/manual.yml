@@ -24,8 +24,6 @@ jobs:
       run: |
         echo "This PR will be merged"
         ls -al
-        cd ${GITHUB_WORKSPACE}
-        ls -al
     - name: git config
       run: |
         cp .git/config .git/config-original
@@ -33,6 +31,7 @@ jobs:
         git config --unset http.https://github.com/.extraheader
     - name: Push Subtree
       run: |
+        git pull
         git subtree push --prefix=lib https://github.com/dongmin-ra/subtree_test_slave.git main
     - name: git config back
       run: |
