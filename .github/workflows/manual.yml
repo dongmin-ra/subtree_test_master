@@ -32,6 +32,8 @@ jobs:
     - name: Push Subtree
       run: |
         git pull
+        git branch
+        git subtree pull --prefix=lib https://github.com/dongmin-ra/subtree_test_slave.git main
         git subtree push --prefix=lib https://github.com/dongmin-ra/subtree_test_slave.git main
     - name: git config back
       run: |
