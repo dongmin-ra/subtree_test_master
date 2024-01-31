@@ -27,4 +27,3 @@ jobs:
         repo: https://github.com/dongmin-ra/subtree_test_slave.git
         action: push
         prefix: lib
-        message: Hello
