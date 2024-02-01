@@ -21,7 +21,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2 
     - name: subtree sync
-      uses: jmadler/git-subtree-action
+      uses: jmadler/git-subtree-action@1.0
       with:
         github_token: ${{ secrets.ACTION_TOKEN }}
         action: 'push'
