@@ -26,11 +26,19 @@ jobs:
     - name: show git version
       run: |
         git version
+        ls -al
     - name: Git Config
       run: |
+        cp .git/config .git/config-original
+        git config --global user.email "test@test.com"
+        git config --global user.name "test_bot"
+        git config --global url.https://api:${{ secrets.ACTION_TOKEN }}@github.com/.insteadOf https://github.com/
         git config --unset-all http.https://github.com/.extraheader
     - name: Subtree Push
       run: |
         git subtree push --prefix=lib https://github.com/dongmin-ra/subtree_test_slave.git main
       env:
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+    - name: Git Config backup
+      run: |
+        cp -f .git/config-original .git/config
