@@ -45,6 +45,7 @@ jobs:
         git fetch subtree 
     - name: Subtree Add
       run: |
+        rm -rf lib
         git subtree add --prefix=lib subtree main --squash
     - name: Subtree Pull
       run: |
