@@ -20,46 +20,11 @@ jobs:
     # Runs a single command using the runners shell
     - name: Checkout Repository
       uses: actions/checkout@v2 
-    - name: Remove github cache
-      run: |
-        rm -rf /github/workspace/.git/subtree-cache
-    - name: show git version
-      run: |
-        git version
-        ls -al
-    - name: Git Config
-      run: |
-        cp .git/config .git/config-original
-        git config --global user.email "test@test.com"
-        git config --global user.name "test_bot"
-        git config --global url.https://api:${{ secrets.ACTION_TOKEN }}@github.com/.insteadOf https://github.com/
-        git config --unset-all http.https://github.com/.extraheader
-    - name: Subtree add remote
-      run: |
-        git remote add subtree https://github.com/dongmin-ra/subtree_test_slave.git
-    - name: Subtree remote check
-      run: |
-        git remote -v
-    - name: Subtree Fetch
-      run: |
-        git fetch subtree 
-    - name: Subtree Pull
-      run: |
-        git subtree pull --prefix=lib --allow-unrelated-histories subtree main
-
-        #- name: Subtree Push
-        # run: |
-        # git subtree push --prefix=lib subtree main
-        # env:
-        # GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
-        # - name: Push
-        # run: |
-        # echo "test bot" >> README.md
-        # git add README.md
-        # git commit -m "add by test bot"
-        # git push origin main
-        # env:
-        # GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
-    - name: Git Config backup
-      run: |
-        cp -f .git/config-original .git/config
+    - name: subtree sync
+      uses: jmadler/git-subtree-action
+      with:
+        github_token: ${{ secrets.ACTION_TOKEN }}
+        action: 'push'
+        repo: 'dongmin-ra/subtree_test_slave'
+        position: 'main'
+        prefix: 'lib'
