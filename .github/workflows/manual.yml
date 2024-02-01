@@ -45,7 +45,8 @@ jobs:
         git fetch subtree 
     - name: Subtree Pull
       run: |
-        git subtree pull --prefix=lib subtree main
+        git subtree pull --prefix=lib --allow-unrelated-histories subtree main
+
         #- name: Subtree Push
         # run: |
         # git subtree push --prefix=lib subtree main
