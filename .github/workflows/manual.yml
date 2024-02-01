@@ -34,9 +34,13 @@ jobs:
         git config --global user.name "test_bot"
         git config --global url.https://api:${{ secrets.ACTION_TOKEN }}@github.com/.insteadOf https://github.com/
         git config --unset-all http.https://github.com/.extraheader
+    - name: Subtree Pull
+      run: |
+        git remote add subtree https://github.com/dongmin-ra/subtree_test_slave.git
+        git pull subtree main
     - name: Subtree Push
       run: |
-        git subtree push --prefix=lib https://github.com/dongmin-ra/subtree_test_slave.git main
+        git subtree push --prefix=lib subtree main
       env:
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
     - name: Git Config backup
