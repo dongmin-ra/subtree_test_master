@@ -43,6 +43,9 @@ jobs:
     - name: Subtree Fetch
       run: |
         git fetch subtree 
+    - name: Subtree Add
+      run: |
+        git subtree add --prefix=lib subtree main --squash
     - name: Subtree Pull
       run: |
         git subtree pull --prefix=lib subtree main --squash
