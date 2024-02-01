@@ -20,6 +20,9 @@ jobs:
     # Runs a single command using the runners shell
     - name: Checkout Repository
       uses: actions/checkout@v2 
+    - name: Remove github cache
+      run: |
+        rm -rf /github/workspace/.git/subtree-cache
     - name: Subtree Push
       uses: dongmin-ra/git-subtree@main
       with:
