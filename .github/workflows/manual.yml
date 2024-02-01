@@ -34,10 +34,18 @@ jobs:
         git config --global user.name "test_bot"
         git config --global url.https://api:${{ secrets.ACTION_TOKEN }}@github.com/.insteadOf https://github.com/
         git config --unset-all http.https://github.com/.extraheader
-    - name: Subtree Pull
+    - name: Subtree add remote
       run: |
         git remote add subtree https://github.com/dongmin-ra/subtree_test_slave.git
-        git pull subtree main
+    - name: Subtree remote check
+      run: |
+        git remote -v
+    - name: Subtree Fetch
+      run: |
+        git fetch subtree 
+    - name: Subtree Pull
+      run: |
+        git subtree pull --prefix=lib subtree main
     - name: Subtree Push
       run: |
         git subtree push --prefix=lib subtree main
