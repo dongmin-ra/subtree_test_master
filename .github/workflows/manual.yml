@@ -26,6 +26,9 @@ jobs:
     - name: show git version
       run: |
         git version
+    - name: Git Config
+      run: |
+        git config --unset-all http.https://github.com/.extraheader
     - name: Subtree Push
       run: |
         git subtree push --prefix=lib https://github.com/dongmin-ra/subtree_test_slave.git main
