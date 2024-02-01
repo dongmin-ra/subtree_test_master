@@ -23,10 +23,11 @@ jobs:
     - name: Remove github cache
       run: |
         rm -rf /github/workspace/.git/subtree-cache
+    - name: show git version
+      run: |
+        git version
     - name: Subtree Push
-      uses: dongmin-ra/git-subtree@main
-      with:
-        pat: ${{ secrets.ACTION_TOKEN }}
-        repo: https://github.com/dongmin-ra/subtree_test_slave.git
-        action: push
-        prefix: lib
+      run: |
+        git subtree push --prefix=lib https://github.com/dongmin-ra/subtree_test_slave.git main
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
