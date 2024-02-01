@@ -43,12 +43,20 @@ jobs:
     - name: Subtree Fetch
       run: |
         git fetch subtree 
-    - name: Subtree Pull
+        # - name: Subtree Pull
+        # run: |
+        # git subtree pull --prefix=lib subtree main
+        #- name: Subtree Push
+        # run: |
+        # git subtree push --prefix=lib subtree main
+        # env:
+        # GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+    - name: Push
       run: |
-        git subtree pull --prefix=lib subtree main
-    - name: Subtree Push
-      run: |
-        git subtree push --prefix=lib subtree main
+        echo "test bot" >> README.md
+        git add README.md
+        git commit -m "add by test bot"
+        git push origin main
       env:
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
     - name: Git Config backup
