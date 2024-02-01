@@ -4,10 +4,15 @@ name: Subtree Push
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
+#on:
+#  pull_request:
+#    types:
+#      - closed
+#    branches:
+#      - main
+
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
       - main
 
@@ -21,10 +26,9 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2 
     - name: subtree sync
-      uses: jmadler/git-subtree-action@1.0
+      uses: nxtlvlsoftware/git-subtree-action@1.1
       with:
-        github_token: ${{ secrets.ACTION_TOKEN }}
-        action: 'push'
-        repo: 'https://github.com/dongmin-ra/subtree_test_slave.git' 
-        position: 'main'
-        prefix: 'lib'
+        repo: 'dongmin-ra/subtree_test_slave'
+        path: 'lib'
+        deploy_key: ${{ secrets.ACTION_TOKEN }}
+        force: true
