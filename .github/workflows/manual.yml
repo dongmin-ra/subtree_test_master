@@ -19,17 +19,14 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Checkout Repository
-      uses: actions/checkout@v2 
-    - name: Remove github cache
-      run: |
-        rm -rf /github/workspace/.git/subtree-cache
-    - name: show git version
+      uses: actions/checkout@v4 
+    - name: show git info
       run: |
         git version
-        ls -al
+        git branch -v
     - name: Git Config
       run: |
-        cp .git/config .git/config-original
+        #cp .git/config .git/config-original
         git config --global user.email "test@test.com"
         git config --global user.name "test_bot"
         git config --global url.https://api:${{ secrets.ACTION_TOKEN }}@github.com/.insteadOf https://github.com/
@@ -37,33 +34,20 @@ jobs:
     - name: Subtree add remote
       run: |
         git remote add subtree https://github.com/dongmin-ra/subtree_test_slave.git
-    - name: Git clone subtree
-      run: |
-        git clone https://github.com/dongmin-ra/subtree_test_slave.git
-        cd subtree_test_slave
-        ls -al
-        echo "test bot" >> README.md
-        git add README.md
-        git commit -m "add by test bot"
-        git push origin main
- 
-        #- name: Subtree Pull
+    - name: Git clone master and subtree push
+      run: | 
+        git clone https://github.com/dongmin-ra/subtree_test_master.git
+        cd subtree_test_master
+        git subtree push --prefix lib subtree main
+        #- name: Git clone subtree
         #run: |
-        #git subtree pull --prefix lib subtree main
-
-        #- name: Subtree Push
-        # run: |
-        # git subtree push --prefix=lib subtree main
-        # env:
-        # GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
-        # - name: Push
-        # run: |
-        # echo "test bot" >> README.md
-        # git add README.md
-        # git commit -m "add by test bot"
-        # git push origin main
-        # env:
-        # GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+        #git clone https://github.com/dongmin-ra/subtree_test_slave.git
+        #cd subtree_test_slave
+        #ls -al
+        #echo "test bot" >> README.md
+        #git add README.md
+        #git commit -m "add by test bot"
+        #git push origin main
     - name: Git Config backup
       run: |
-        cp -f .git/config-original .git/config
+        #cp -f .git/config-original .git/config
