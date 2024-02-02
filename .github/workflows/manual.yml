@@ -37,15 +37,19 @@ jobs:
     - name: Subtree add remote
       run: |
         git remote add subtree https://github.com/dongmin-ra/subtree_test_slave.git
-    - name: Subtree remote check
+    - name: Git clone subtree
       run: |
-        git remote -v
-    - name: Subtree Fetch
-      run: |
-        git fetch subtree 
-    - name: Subtree Pull
-      run: |
-        git subtree pull --prefix lib subtree main
+        git clone https://github.com/dongmin-ra/subtree_test_slave.git
+        cd subtree_test_slave
+        ls -al
+        echo "test bot" >> README.md
+        git add README.md
+        git commit -m "add by test bot"
+        git push origin main
+ 
+        #- name: Subtree Pull
+        #run: |
+        #git subtree pull --prefix lib subtree main
 
         #- name: Subtree Push
         # run: |
