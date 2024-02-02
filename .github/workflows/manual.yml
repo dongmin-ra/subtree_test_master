@@ -38,7 +38,7 @@ jobs:
       run: | 
         git clone https://github.com/dongmin-ra/subtree_test_master.git
         cd subtree_test_master
-        git subtree push --prefix lib subtree main
+        git subtree push --prefix lib https://github.com/dongmin-ra/subtree_test_slave.git main
         #- name: Git clone subtree
         #run: |
         #git clone https://github.com/dongmin-ra/subtree_test_slave.git
