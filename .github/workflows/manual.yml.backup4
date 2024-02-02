@@ -1,0 +1,34 @@
+# This is a basic workflow that is manually triggered
+
+name: Subtree Push
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+#on:
+#  pull_request:
+#    types:
+#      - closed
+#    branches:
+#      - main
+
+on:
+  push:
+    branches:
+      - main
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  subtree-push:
+    #if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+    # Runs a single command using the runners shell
+    - name: Checkout Repository
+      uses: actions/checkout@v2 
+    - name: subtree sync
+      uses: nxtlvlsoftware/git-subtree-action@1.1
+      with:
+        repo: 'dongmin-ra/subtree_test_slave'
+        path: 'lib'
+        deploy_key: ${{ secrets.ACTION_TOKEN }}
+        force: true
