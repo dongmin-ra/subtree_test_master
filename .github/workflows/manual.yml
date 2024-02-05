@@ -23,28 +23,20 @@ jobs:
       with:
         token: ${{ secrets.ACTION_TOKEN }}
         fetch-depth: 0
-    - name: show git info
-      run: |
-        git version
-        git branch -v
-    - name: Git Config
-      run: |
-        #cp .git/config .git/config-original
-        git config --global user.email "test@test.com"
-        git config --global user.name "test_bot"
-        git config --global url.https://api:${{ secrets.ACTION_TOKEN }}@github.com/.insteadOf https://github.com/
-        git config --unset-all http.https://github.com/.extraheader
-    - name: Subtree add remote
-      run: |
-        git remote add subtree https://github.com/dongmin-ra/subtree_test_slave.git
-    - name: Subtree push
-      run: |
-        git subtree push --prefix lib https://github.com/dongmin-ra/subtree_test_slave.git main
-        #- name: Git clone master and subtree push
-        #run: | 
-        #git clone https://github.com/dongmin-ra/subtree_test_master.git
-        #cd subtree_test_master
+    - name: Git subtree push
+      uses: karlludwigweise/git-subtree@v1
+      with:
+        pat: ${{ secrets.ACTION_TOKEN }}
+        repo:  https://github.com/dongmin-ra/subtree_test_slave.git
+        action: push
+        prefix: lib
+        message: "add by test bot"
+        #- name: Git Config
+        #run: |
+        #git config --global user.email "test@test.com"
+        #git config --global user.name "test_bot"
+        #git config --global url.https://api:${{ secrets.ACTION_TOKEN }}@github.com/.insteadOf https://github.com/
+        #git config --unset-all http.https://github.com/.extraheader
+        #- name: Subtree push
+        #run: |
         #git subtree push --prefix lib https://github.com/dongmin-ra/subtree_test_slave.git main
-    - name: Git Config backup
-      run: |
-        #cp -f .git/config-original .git/config
