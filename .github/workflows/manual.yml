@@ -20,6 +20,8 @@ jobs:
     # Runs a single command using the runners shell
     - name: Checkout Repository
       uses: actions/checkout@v4 
+      with:
+        token: ${{ secrets.ACTION_TOKEN }}
     - name: show git info
       run: |
         git version
