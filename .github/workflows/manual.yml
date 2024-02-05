@@ -30,5 +30,5 @@ jobs:
         git config --global url.https://api:${{ secrets.ACTION_TOKEN }}@github.com/.insteadOf https://github.com/
         git config --unset http.https://github.com/.extraheader
     - name: Subtree push
-        run: |
+      run: |
         git subtree push --prefix lib https://github.com/dongmin-ra/subtree_test_slave.git main
