@@ -23,19 +23,12 @@ jobs:
       with:
         token: ${{ secrets.ACTION_TOKEN }}
         fetch-depth: 0
-    - name: Git subtree push
-      uses: dongmin-ra/git-subtree
-      with:
-        pat: ${{ secrets.ACTION_TOKEN }}
-        repo:  https://github.com/dongmin-ra/subtree_test_slave.git
-        action: push
-        prefix: lib
-        #- name: Git Config
-        #run: |
-        #git config --global user.email "test@test.com"
-        #git config --global user.name "test_bot"
-        #git config --global url.https://api:${{ secrets.ACTION_TOKEN }}@github.com/.insteadOf https://github.com/
-        #git config --unset-all http.https://github.com/.extraheader
-        #- name: Subtree push
-        #run: |
-        #git subtree push --prefix lib https://github.com/dongmin-ra/subtree_test_slave.git main
+    - name: Git Config
+      run: |
+        git config --global user.email "test@test.com"
+        git config --global user.name "test_bot"
+        git config --global url.https://api:${{ secrets.ACTION_TOKEN }}@github.com/.insteadOf https://github.com/
+        git config --unset http.https://github.com/.extraheader
+    - name: Subtree push
+        run: |
+        git subtree push --prefix lib https://github.com/dongmin-ra/subtree_test_slave.git main
