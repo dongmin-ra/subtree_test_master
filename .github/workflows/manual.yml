@@ -24,13 +24,12 @@ jobs:
         token: ${{ secrets.ACTION_TOKEN }}
         fetch-depth: 0
     - name: Git subtree push
-      uses: karlludwigweise/git-subtree@v1
+      uses: dongmin-ra/git-subtree
       with:
         pat: ${{ secrets.ACTION_TOKEN }}
         repo:  https://github.com/dongmin-ra/subtree_test_slave.git
         action: push
         prefix: lib
-        message: "add by test bot"
         #- name: Git Config
         #run: |
         #git config --global user.email "test@test.com"
